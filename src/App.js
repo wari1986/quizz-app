@@ -46,33 +46,33 @@ export default function App() {
 
 	const [score, setScore] = useState(0);
 
+	const[scoreList, setScoreList] = useState(0);
 
-	const handleAnswerButtonClick = (isCorrect) => {
+	const handleAnswerButton = (isCorrect) => {
 		if(isCorrect === true) {
-			setScore(score+1);
+			setScore(score +1);
 		}
 
-
-		const nextQuestion = currentQuestion + 1;
-
-		if(nextQuestion < questions.length){
+		const nextQuestion = currentQuestion +1;
+		if(nextQuestion < questions.length) {
 			setCurrentQuestion(nextQuestion);
-		}else {
+		}else{
 			setShowScore(true);
 		}
-
 	}
 
-	const handleResetButton = () => {
+	const handleResetButton = (score) => {
+		setScoreList(scoreList+score);
 		setCurrentQuestion(0);
 		setShowScore(false);
 		setScore(0);
-}
+	}
 
 	return (
 		<div className='app'>
 			{showScore ? (
-				<div className='score-section'>You scored {score} out of {questions.length}<button onClick={handleResetButton}>Play Again!</button></div>
+				<div className='score-section'>You scored {score} out of {questions.length}and your acummulated score was: {scoreList}
+				<button onClick={() => handleResetButton(score)}>Play Again!</button></div>
 
 			) : (
 				<>
@@ -84,7 +84,7 @@ export default function App() {
 					</div>
 					<div className='answer-section'>
 						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+							<button onClick={() => handleAnswerButton(answerOption.isCorrect)}>{answerOption.answerText}</button>
 						))}
 					</div>
 				</>
