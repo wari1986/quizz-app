@@ -71,7 +71,7 @@ export default function App() {
 	return (
 		<div className='app'>
 			{showScore ? (
-				<div className='score-section'>You scored {score} out of {questions.length}and your acummulated score was: {scoreList}
+				<div className='score-section'>You scored {score} out of {questions.length} and your acummulated score is {scoreList}
 				<button onClick={() => handleResetButton(score)}>Play Again!</button></div>
 
 			) : (
